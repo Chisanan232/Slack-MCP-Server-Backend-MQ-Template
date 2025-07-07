@@ -28,6 +28,9 @@ dependencies = []
 Homepage = "https://github.com/<your GitHub name>/<new repo>"
 Repository = "https://github.com/<your GitHub name>/<new repo>"
 
+[project.entry-points."slack_mcp.backends.queue"]
+mq_name = "slack_mcp.backends.queue.<mq_name>:MessageQueueBackend"
+
 [dependency-groups]
 dev = [
     "pytest>=8.4.1,<9",
