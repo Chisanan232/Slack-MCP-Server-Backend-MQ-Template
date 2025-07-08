@@ -1,12 +1,15 @@
 [run]
 parallel = True
 relative_files = True
-include=./src
-
+#source=./src/
+include=./src/
 omit =
 #    */__init__.py
     ./src/__main__.py
 
+[paths]
+source =
+    ./src/
 
 [report]
 # Regexes for lines to exclude from consideration
@@ -27,6 +30,9 @@ exclude_lines =
 
     # Don't complain about abstract methods, they aren't run:
     @(abc\.)?abstractmethod
+
+    # Don't complain about Protocol ellipsis lines that aren't meant to be executed:
+    \.\.\.
 
     # Don't complain about the exceptions catching of ImportError and ModuleNotFoundError, they aren't run:
     except ImportError:
