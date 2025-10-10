@@ -67,7 +67,7 @@ default-groups = [
 ]
 
 [tool.hatch.build.targets.sdist]
-include = ["src/"]
+include = ["slack_mcp/"]
 
 [tool.hatch.build.targets.wheel]
-include = ["src/"]
+include = ["slack_mcp/"]

@@ -1,15 +1,15 @@
 [run]
 parallel = True
 relative_files = True
-#source=./src/
-include=./src/
+#source=./slack_mcp/
+include=./slack_mcp/
 omit =
 #    */__init__.py
-    ./src/__main__.py
+    ./slack_mcp/__main__.py
 
 [paths]
 source =
-    ./src/
+    ./slack_mcp/
 
 [report]
 # Regexes for lines to exclude from consideration
