@@ -42,7 +42,7 @@ Changelog = "https://chisanan232.github.io/slack-mcp-server-template/docs/next/c
 "Project Management" = "https://app.clickup.com/9018752317/v/f/90185744047/90184991515"
 
 [project.entry-points."slack_mcp.backends.queue"]
-mq_name = "slack_mcp.backends.queue.template:MessageQueueBackend"
+mq_name = "slack_mcp_plugin.backends.queue.template:MessageQueueBackend"
 
 [dependency-groups]
 dev = [
@@ -67,11 +67,11 @@ default-groups = [
 ]
 
 [tool.hatch.build.targets.sdist]
-include = ["slack_mcp/"]
-packages = ["slack_mcp/backends/queue"]
-#artifacts = ["slack_mcp/py.typed"]
+include = ["slack_mcp_plugin/"]
+packages = ["slack_mcp_plugin/backends/queue"]
+#artifacts = ["slack_mcp_plugin/py.typed"]
 
 [tool.hatch.build.targets.wheel]
-include = ["slack_mcp/"]
-packages = ["slack_mcp/backends/queue"]
-#artifacts = ["slack_mcp/py.typed"]
+include = ["slack_mcp_plugin/"]
+packages = ["slack_mcp_plugin/backends/queue"]
+#artifacts = ["slack_mcp_plugin/py.typed"]

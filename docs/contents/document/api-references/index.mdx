@@ -191,41 +191,42 @@ import json
 import logging
 from typing import Any, AsyncIterator, Dict, Optional
 
-from slack_mcp.backends.base.protocol import QueueBackend
+from slack_mcp_plugin.backends.base.protocol import QueueBackend
 
 logger = logging.getLogger(__name__)
 
+
 class YourMQBackend(QueueBackend):
     """Your custom message queue backend implementation."""
-    
+
     def __init__(self, host: str, port: int, username: str, password: str):
         self.host = host
         self.port = port
         self.username = username
         self.password = password
         self._connection = None
-    
+
     @classmethod
     def from_env(cls) -> "YourMQBackend":
         """Create instance from environment variables."""
         # Implementation here
         pass
-    
+
     async def connect(self):
         """Establish connection to your message queue."""
         # Implementation here
         pass
-    
+
     async def disconnect(self):
         """Close connection to your message queue."""
         # Implementation here
         pass
-    
+
     async def publish(self, key: str, payload: Dict[str, Any]) -> None:
         """Publish message implementation."""
         # Implementation here
         pass
-    
+
     async def consume(self, *, group: Optional[str] = None) -> AsyncIterator[Dict[str, Any]]:
         """Consume messages implementation."""
         # Implementation here
@@ -342,7 +343,8 @@ Test integration with the Slack MCP server:
 ```python
 import os
 import pytest
-from slack_mcp.backends import get_backend
+from slack_mcp_plugin.backends import get_backend
+
 
 @pytest.mark.integration
 async def test_backend_integration():
@@ -350,14 +352,14 @@ async def test_backend_integration():
     os.environ["QUEUE_BACKEND"] = "your_backend"
     os.environ["MQ_HOST"] = "localhost"
     # Set other required env vars
-    
+
     backend = get_backend()
     assert isinstance(backend, YourMQBackend)
-    
+
     # Test publish/consume cycle
     test_payload = {"event": "app_mention", "data": {"text": "test"}}
     await backend.publish("slack.app_mention", test_payload)
-    
+
     async for message in backend.consume():
         assert message == test_payload
         break

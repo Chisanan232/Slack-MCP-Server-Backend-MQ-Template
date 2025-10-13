@@ -120,19 +120,20 @@ import json
 import logging
 import os
 from typing import Any, AsyncIterator, Dict, Optional
-from slack_mcp.backends.base.protocol import QueueBackend
+from slack_mcp_plugin.backends.base.protocol import QueueBackend
 
 logger = logging.getLogger(__name__)
+
 
 class YourQueueBackend(QueueBackend):
     """YOUR-QUEUE implementation of QueueBackend."""
 
     def __init__(
-        self,
-        connection_url: str,
-        username: Optional[str] = None,
-        password: Optional[str] = None,
-        **kwargs
+            self,
+            connection_url: str,
+            username: Optional[str] = None,
+            password: Optional[str] = None,
+            **kwargs
     ):
         """Initialize the YOUR-QUEUE backend.
         
@@ -169,17 +170,17 @@ class YourQueueBackend(QueueBackend):
         connection_url = os.environ.get("YOUR_QUEUE_URL")
         if not connection_url:
             raise ValueError("YOUR_QUEUE_URL environment variable is required")
-        
+
         username = os.environ.get("YOUR_QUEUE_USERNAME")
         password = os.environ.get("YOUR_QUEUE_PASSWORD")
-        
+
         # Optional configuration
         config = {}
         if ssl_enabled := os.environ.get("YOUR_QUEUE_SSL"):
             config["ssl"] = ssl_enabled.lower() == "true"
         if timeout := os.environ.get("YOUR_QUEUE_TIMEOUT"):
             config["timeout"] = int(timeout)
-        
+
         return cls(connection_url, username, password, **config)
 
     async def _ensure_connected(self) -> None:
@@ -207,7 +208,7 @@ class YourQueueBackend(QueueBackend):
     async def publish(self, key: str, payload: Dict[str, Any]) -> None:
         """Publish a message to YOUR-QUEUE."""
         await self._ensure_connected()
-        
+
         try:
             message = json.dumps(payload)
             # Implement your publish logic here
@@ -220,7 +221,7 @@ class YourQueueBackend(QueueBackend):
     async def consume(self, key: str) -> AsyncIterator[Dict[str, Any]]:
         """Consume messages from YOUR-QUEUE."""
         await self._ensure_connected()
-        
+
         try:
             # Implement your consume logic here
             # async for message in self._client.consume(key):
@@ -230,7 +231,7 @@ class YourQueueBackend(QueueBackend):
             #     except json.JSONDecodeError as e:
             #         logger.error(f"Invalid JSON in message from {key}: {e}")
             #         continue
-            
+
             # For demonstration, yield empty dict
             yield {}
         except Exception as e:
@@ -244,10 +245,12 @@ class YourQueueBackend(QueueBackend):
             self._connected = False
             logger.info("Disconnected from YOUR-QUEUE service")
 
+
 # Custom exception classes
 class PublishError(Exception):
     """Raised when message publishing fails."""
     pass
+
 
 class ConsumeError(Exception):
     """Raised when message consumption fails."""
