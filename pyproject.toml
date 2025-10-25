@@ -41,8 +41,8 @@ Documentation = "https://chisanan232.github.io/slack-mcp-server-template/"
 Changelog = "https://chisanan232.github.io/slack-mcp-server-template/docs/next/changelog"
 "Project Management" = "https://app.clickup.com/9018752317/v/f/90185744047/90184991515"
 
-[project.entry-points."slack_mcp.backends.queue"]
-mq_name = "slack_mcp_plugin.backends.queue.template:MessageQueueBackend"
+[project.entry-points."abe.backends.queue.service"]
+mq_name = "abe_plugin.backends.queue.service.template:MessageQueueBackend"
 
 [dependency-groups]
 dev = [
@@ -67,9 +67,9 @@ default-groups = [
 ]
 
 [tool.hatch.build.targets.sdist]
-packages = ["slack_mcp_plugin"]
-#artifacts = ["slack_mcp_plugin/py.typed"]
+packages = ["abe_plugin"]
+#artifacts = ["abe_plugin/py.typed"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["slack_mcp_plugin"]
-#artifacts = ["slack_mcp_plugin/py.typed"]
+packages = ["abe_plugin"]
+#artifacts = ["abe_plugin/py.typed"]
