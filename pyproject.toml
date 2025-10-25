@@ -3,22 +3,19 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "slack-mcp-mq-template"
+name = "abe-mq-template"
 version = "0.0.0"
-description = "📮 A message queue component plugin for strong Slack MCP server."
+description = "📮 A queue component plugin implementation for abstract backend library."
 authors = [{ name = "Chisanan232", email = "chi10211201@cycu.org.tw" }]
 requires-python = ">=3.12,<3.14"
 readme = "README.md"
 license = { file = "LICENSE" }
 keywords = [
-    "slack",
-    "mcp",
-    "mcp-server",
-    "slack-mcp",
-    "slack-mcp-server",
-    "slack-event",
-    "slack-event-handler",
+    "backend",
+    "queue",
     "message-queue",
+    "implementation",
+    "implement-layer",
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",
