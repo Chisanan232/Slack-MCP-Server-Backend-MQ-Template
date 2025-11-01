@@ -38,8 +38,8 @@ Documentation = "https://chisanan232.github.io/abstract-backend/"
 Changelog = "https://chisanan232.github.io/abstract-backend/docs/next/changelog"
 "Project Management" = "https://app.clickup.com/9018752317/v/f/90185744047/90184991515"
 
-[project.entry-points."abe.backends.queue.service"]
-mq_name = "abe_plugin.backends.queue.service.your_queue_service:YourMQBackend"
+[project.entry-points."abe.backends.message_queue.service"]
+mq_name = "abe_plugin.backends.message_queue.service.your_queue_service:YourMQBackend"
 
 [dependency-groups]
 dev = [
