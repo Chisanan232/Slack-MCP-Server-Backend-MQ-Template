@@ -12,8 +12,8 @@ const config: Config = {
   // Set the production url of your site here
   url: 'https://chisanan232.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
-  baseUrl: '/abstract-backend/',
-  projectName: 'abstract-backend',
+  baseUrl: '/abstract-backend-implementation-template/',
+  projectName: 'abstract-backend-implementation-template',
   organizationName: 'Chisanan232',
   trailingSlash: false,
 
