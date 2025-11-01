@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-# Creating Your Slack MCP Server Message Queue Plugin
+# Creating Your Abstract Backend Queue Service Implementation
 
 This guide provides step-by-step instructions for setting up your message queue plugin project using this template.
 
@@ -17,20 +17,20 @@ This guide provides step-by-step instructions for setting up your message queue 
 
 ### Step 1: Create Repository from Template
 
-1. Navigate to the [Slack MCP Server MQ Template repository](https://github.com/Chisanan232/Slack-MCP-Server-Backend-MQ-Template)
+1. Navigate to the [Abstract Backend Implementation Template repository](https://github.com/Chisanan232/abstract-backend)
 2. Click the **"Use this template"** button (green button)
 3. Select **"Create a new repository"**
 4. Configure your new repository:
-   - **Repository name**: `slack-mcp-<your-queue-name>-backend` (e.g., `slack-mcp-redis-backend`)
-   - **Description**: `Message queue backend plugin for Slack MCP Server using <Your Queue Service>`
+   - **Repository name**: `abstract-backend-<your-queue-name>-service` (e.g., `abstract-backend-redis-service`)
+   - **Description**: `Queue service implementation for Abstract Backend using <Your Queue Service>`
    - **Visibility**: Choose Public (recommended for community plugins) or Private
    - **Include all branches**: Leave unchecked
 
 ### Step 2: Clone Your New Repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/slack-mcp-YOUR-QUEUE-backend.git
-cd slack-mcp-YOUR-QUEUE-backend
+git clone https://github.com/YOUR-USERNAME/abstract-backend-YOUR-QUEUE-service.git
+cd abstract-backend-YOUR-QUEUE-service
 ```
 
 ## Method 2: Manual Setup
@@ -41,8 +41,8 @@ cd slack-mcp-YOUR-QUEUE-backend
 <TabItem value="git-clone" label="Git Clone">
 
 ```bash
-git clone https://github.com/Chisanan232/Slack-MCP-Server-Backend-MQ-Template.git slack-mcp-your-queue-backend
-cd slack-mcp-your-queue-backend
+git clone https://github.com/Chisanan232/abstract-backend.git abstract-backend-your-queue-service
+cd abstract-backend-your-queue-service
 rm -rf .git  # Remove template's git history
 git init     # Initialize new git repository
 ```
@@ -71,20 +71,20 @@ Edit `pyproject.toml` to customize your plugin:
 
 ```toml
 [project]
-name = "slack-mcp-YOUR-QUEUE-backend"  # Replace YOUR-QUEUE
+name = "abstract-backend-YOUR-QUEUE-service"  # Replace YOUR-QUEUE
 version = "0.1.0"
-description = "📮 A YOUR-QUEUE message queue backend plugin for Slack MCP Server."
+description = "📮 A YOUR-QUEUE queue service implementation for Abstract Backend."
 authors = [{ name = "Your Name", email = "your.email@example.com" }]
 
 # Update URLs to your repository
 [project.urls]
-Homepage = "https://github.com/YOUR-USERNAME/slack-mcp-YOUR-QUEUE-backend"
-Repository = "https://github.com/YOUR-USERNAME/slack-mcp-YOUR-QUEUE-backend"
-Documentation = "https://YOUR-USERNAME.github.io/slack-mcp-YOUR-QUEUE-backend/"
+Homepage = "https://github.com/YOUR-USERNAME/abstract-backend-YOUR-QUEUE-service"
+Repository = "https://github.com/YOUR-USERNAME/abstract-backend-YOUR-QUEUE-service"
+Documentation = "https://YOUR-USERNAME.github.io/abstract-backend-YOUR-QUEUE-service/"
 
 # Configure your plugin entry point
-[project.entry-points."slack_mcp.backends.queue"]
-your_queue_name = "slack_mcp.backends.queue.your_queue:YourQueueBackend"
+[project.entry-points."abe.backends.queue.service"]
+your_queue_name = "abe_plugin.backends.queue.service.your_queue_service:YourQueueBackend"
 ```
 
 ### Rename Source Files
@@ -93,11 +93,7 @@ Update the source file structure to match your queue implementation:
 
 ```bash
 # Rename the main implementation file
-mv src/memory.py src/your_queue.py
-
-# Update the module structure if needed
-mkdir -p src/slack_mcp/backends/queue/
-mv src/your_queue.py src/slack_mcp/backends/queue/
+mv abe_plugin/backends/queue/service/your_queue_service.py abe_plugin/backends/queue/service/<your_queue_service>.py
 ```
 
 ### Update Documentation

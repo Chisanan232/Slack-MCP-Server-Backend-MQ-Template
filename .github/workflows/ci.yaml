@@ -56,8 +56,8 @@ jobs:
 #    name: Run all tests and organize all test reports
     uses: ./.github/workflows/rw_run_all_test_and_record.yaml
     with:
-      with-environment-variables: 'SLACK_TEST_CHANNEL_ID="${{ vars.SLACK_TEST_CHANNEL_ID }}"'
+      with-environment-variables: 'ABE_TEST_CHANNEL_ID="${{ vars.ABE_TEST_CHANNEL_ID }}"'
     secrets:
       codecov_token: ${{ secrets.CODECOV_TOKEN }}
       sonar_token: ${{ secrets.SONAR_TOKEN }}
-      e2e_test_api_token: ${{ secrets.SLACK_BOT_TOKEN }}
+      e2e_test_api_token: ${{ secrets.ABE_SERVICE_TOKEN }}

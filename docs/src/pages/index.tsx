@@ -34,7 +34,7 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to={stableDocsPath}>
-            Slack MCP server MQ Template Documentation
+            Abstract Backend Template Documentation
           </Link>
         </div>
       </div>

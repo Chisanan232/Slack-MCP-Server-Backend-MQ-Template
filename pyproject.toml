@@ -32,10 +32,10 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Homepage = "https://github.com/Chisanan232/Slack-MCP-Server-Backend-MQ-Template"
-Repository = "https://github.com/Chisanan232/Slack-MCP-Server-Backend-MQ-Template"
-Documentation = "https://chisanan232.github.io/slack-mcp-server-template/"
-Changelog = "https://chisanan232.github.io/slack-mcp-server-template/docs/next/changelog"
+Homepage = "https://github.com/Chisanan232/abstract-backend"
+Repository = "https://github.com/Chisanan232/abstract-backend"
+Documentation = "https://chisanan232.github.io/abstract-backend/"
+Changelog = "https://chisanan232.github.io/abstract-backend/docs/next/changelog"
 "Project Management" = "https://app.clickup.com/9018752317/v/f/90185744047/90184991515"
 
 [project.entry-points."abe.backends.queue.service"]

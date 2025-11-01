@@ -4,57 +4,57 @@ title: Introduction
 sidebar_position: 1
 ---
 
-# Slack MCP Server Message Queue Component Plugin Template
+# Abstract Backend Implementation Template
 
-Welcome to the **Slack MCP Server Message Queue Component Plugin Template** - a comprehensive template for building message queue backend plugins for the [Slack MCP Server](https://github.com/Chisanan232/slack-mcp-server) project.
+Welcome to the **Abstract Backend Implementation Template** – a comprehensive reference for building queue service implementations that integrate with the [abstract-backend](https://github.com/Chisanan232/abstract-backend) project.
 
 ## What is This Template?
 
-This template provides a production-ready foundation for creating custom message queue backend plugins that integrate seamlessly with the Slack MCP Server's webhook-based event transfer system. It enables developers to quickly implement their own message queue solutions as distributable Python packages that can be installed and used without any additional configuration complexity.
+This template provides a production-ready foundation for creating custom queue service implementations that integrate seamlessly with the abstract-backend event processing system. It enables developers to quickly deliver queue-enabled services as distributable Python packages that can be installed and reused without additional integration friction.
 
-## The Slack MCP Server Integration
+## Abstract Backend Integration
 
-The [Slack MCP Server](https://github.com/Chisanan232/slack-mcp-server) is designed with a flexible, plugin-based architecture that supports webhook features to transfer Slack events through customizable message queue systems. This template helps you create custom queue backends that users can install via `pip install <your-slack-mcp-server-mq-plugin>` and use immediately with minimal configuration.
+The [abstract-backend](https://github.com/Chisanan232/abstract-backend) project is designed with a flexible, plugin-based architecture that supports event dispatching through customizable queue services. This template helps you create queue providers that users can install via `pip install <your-abstract-backend-queue-service>` and enable immediately with minimal configuration.
 
 ### Event Flow Architecture
 
-The Slack MCP Server processes events through the following flow:
+The Abstract Backend runtime processes events through the following flow:
 
-1. **Slack Event Reception**: Slack sends webhook events to the MCP Server
-2. **Event Processing**: The MCP Server receives and validates the event
-3. **Queue Backend Selection**: Based on `QUEUE_BACKEND` environment variable
-4. **Message Publishing**: Event is published to your custom message queue
+1. **Event Reception**: External systems send events into the runtime
+2. **Event Processing**: The runtime receives and validates the payload
+3. **Queue Service Selection**: Based on `QUEUE_BACKEND` environment variable
+4. **Message Publishing**: Event is published to your custom queue service
 5. **Consumer Processing**: Your custom logic consumes and processes the event
-6. **Response Handling**: Results are sent back through the system
+6. **Response Handling**: Results are propagated back through the system
 
 ```mermaid
 sequenceDiagram
-    participant S as Slack
-    participant MCP as Slack MCP Server
-    participant QB as Queue Backend Plugin
+    participant ES as Event Source
+    participant AB as Abstract Backend Runtime
+    participant QS as Queue Service Plugin
     participant UL as User Logic
     
-    S->>MCP: Webhook Event
-    MCP->>MCP: Validate & Parse Event
-    MCP->>QB: publish(event_key, event_data)
-    QB->>QB: Store in Queue
-    UL->>QB: consume(event_key)
-    QB->>UL: yield event_data
+    ES->>AB: Event Delivery
+    AB->>AB: Validate & Parse Event
+    AB->>QS: publish(event_key, event_data)
+    QS->>QS: Store in Queue
+    UL->>QS: consume(event_key)
+    QS->>UL: yield event_data
     UL->>UL: Process Event
-    UL->>MCP: Response (optional)
-    MCP->>S: Acknowledge (optional)
+    UL->>AB: Response (optional)
+    AB->>ES: Acknowledge (optional)
 ```
 
 ### Plugin Discovery System
 
-The Slack MCP Server uses Python's entry points system for plugin discovery:
+Abstract Backend uses Python's entry points system for plugin discovery:
 
 ```toml
-[project.entry-points."slack_mcp.backends.queue"]
+[project.entry-points."abe.backends.queue.service"]
 your_queue_name = "your_module.path:YourQueueBackend"
 ```
 
-When users set `QUEUE_BACKEND=your_queue_name` in their environment, the MCP Server automatically discovers and loads your plugin.
+When users set `QUEUE_BACKEND=your_queue_name` in their environment, the runtime automatically discovers and loads your queue service implementation.
 
 ## Architecture Design Patterns
 
@@ -119,8 +119,8 @@ async def consume(self, key: str) -> AsyncIterator[Dict[str, Any]]:
 
 ### 🔌 **Plug-and-Play Architecture**
 - **Zero Configuration**: Users just install your package and set an environment variable
-- **Hot Swappable**: Change queue backends without modifying code
-- **Backward Compatible**: Works with existing Slack MCP Server installations
+- **Hot Swappable**: Change queue services without modifying code
+- **Backward Compatible**: Works with existing Abstract Backend deployments
 
 ### ⚡ **High-Performance Event Processing**
 - **Asynchronous Operations**: Non-blocking message processing
@@ -178,32 +178,32 @@ This template can be adapted for various message queue systems:
 
 ### **Development & Testing**
 ```bash
-pip install slack-mcp-memory-backend
-QUEUE_BACKEND=memory python -m slack_mcp_server
+pip install abstract-backend-memory-service
+QUEUE_BACKEND=memory python -m abstract_backend.runtime
 ```
 
 ### **Production Deployment**
 ```bash
-pip install slack-mcp-redis-backend
+pip install abstract-backend-redis-service
 QUEUE_BACKEND=redis
 REDIS_URL=redis://prod-redis:6379/0
-python -m slack_mcp_server
+python -m abstract_backend.runtime
 ```
 
 ### **Microservices Architecture**
 ```bash
-pip install slack-mcp-kafka-backend
+pip install abstract-backend-kafka-service
 QUEUE_BACKEND=kafka
 KAFKA_BROKERS=kafka1:9092,kafka2:9092
-python -m slack_mcp_server
+python -m abstract_backend.runtime
 ```
 
 ### **Enterprise Integration**
 ```bash
-pip install slack-mcp-rabbitmq-backend
+pip install abstract-backend-rabbitmq-service
 QUEUE_BACKEND=rabbitmq
 RABBITMQ_URL=amqp://user:pass@rabbitmq:5672/vhost
-python -m slack_mcp_server
+python -m abstract_backend.runtime
 ```
 
 ## Getting Started

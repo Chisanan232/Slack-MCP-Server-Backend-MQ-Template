@@ -27,7 +27,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           filters: |
             code:
-              - 'slack_mcp/**'
+              - 'abe_plugin/**'
               - 'examples/**'
               - 'scripts/**'
               - 'test/**'
